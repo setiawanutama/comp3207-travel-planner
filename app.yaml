@@ -1,7 +1,10 @@
-application: my-codefish
-runtime: python
+application: comp3207-travel-planner
 version: 1
+
+runtime: python27
 api_version: 1
+threadsafe: true
+
 
 handlers:
 - url: .*
