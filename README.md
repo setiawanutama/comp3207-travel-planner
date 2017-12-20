@@ -1,11 +1,6 @@
-# comp3207-travel-planner
+Codefish
+======================
 
-This repo is integrated to Google App Engine through Codeship https://app.codeship.com/projects/261373.
-Pushing code into this Github repo will automatically deploy to Google App Engine (GAE).
+This application is used for screencast tutorials about how to set up Codeship projects with Django applications. It is based on [Google's app engine django template](https://code.google.com/p/google-app-engine-samples/source/browse/trunk/django_example).
 
-Testing 1
-Testing 2
-Testing 3
-Testing 4
-Testing 5
-Testing 6
+![Codeship Status](https://www.codeship.io/projects/46ae88c0-60b8-0131-2319-5ede98f174ff/status)
