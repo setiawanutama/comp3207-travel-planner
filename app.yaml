@@ -1,11 +1,7 @@
-application: comp3207-travel-planner-189701
-version: 1
-
 runtime: python27
 api_version: 1
-threadsafe: false
-
+threadsafe: true
 
 handlers:
-- url: .*
-  script: manage.py
+- url: /.*
+  script: main.app
