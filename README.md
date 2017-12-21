@@ -7,3 +7,4 @@ This application is used for screencast tutorials about how to set up Codeship p
 
 Testing 1
 Testing 2
+Testing 3
