@@ -2,6 +2,9 @@ runtime: python27
 api_version: 1
 threadsafe: true
 
+application: comp3207-travel-planner-18970
+api_version: 1
+
 handlers:
 - url: /.*
   script: main.app
