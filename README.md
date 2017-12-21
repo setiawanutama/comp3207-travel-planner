@@ -6,3 +6,4 @@ This application is used for screencast tutorials about how to set up Codeship p
 ![Codeship Status](https://www.codeship.io/projects/46ae88c0-60b8-0131-2319-5ede98f174ff/status)
 
 Testing 1
+Testing 2
