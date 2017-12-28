@@ -1,14 +1,23 @@
-Codefish
-======================
+# Getting started with Django on Google Cloud Platform on App Engine Standard
 
-This application is used for screencast tutorials about how to set up Codeship projects with Django applications. It is based on [Google's app engine django template](https://code.google.com/p/google-app-engine-samples/source/browse/trunk/django_example).
+[![Open in Cloud Shell][shell_img]][shell_link]
 
-![Codeship Status](https://www.codeship.io/projects/46ae88c0-60b8-0131-2319-5ede98f174ff/status)
+[shell_img]: http://gstatic.com/cloudssh/images/open-btn.png
+[shell_link]: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/python-docs-samples&page=editor&open_in_editor=appengine/standard/django/README.md
 
-Testing 1
-Testing 2
-Testing 3
-Testing 4
-Testing 5
-Testing 6
-Testing 7
+This repository is an example of how to run a [Django](https://www.djangoproject.com/) 
+app on Google App Engine Standard Environment. It uses the 
+[Writing your first Django app](https://docs.djangoproject.com/en/1.9/intro/tutorial01/) as the 
+example app to deploy.
+
+
+# Tutorial
+See our [Running Django in the App Engine Standard Environment](https://cloud.google.com/python/django/appengine) tutorial for instructions for setting up and deploying this sample application.
+
+
+Google Cloud SQL
+MySQL
+instance ID: instance1
+IP address: 35.224.177.65
+user: root
+password: root
