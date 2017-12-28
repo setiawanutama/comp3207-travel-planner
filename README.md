@@ -21,3 +21,5 @@ instance ID: instance1
 IP address: 35.224.177.65
 user: root
 password: root
+
+Testing 1
