@@ -125,7 +125,8 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '127.0.0.1',
+            # 'HOST': '127.0.0.1',
+            'HOST': '127.1.2.3',
             'PORT': '3306',
             'NAME': 'polls',
             'USER': 'root',
