@@ -13,7 +13,12 @@ handlers:
 
 libraries:
 - name: MySQLdb
-  version: 1.2.5
+  version: "1.2.5"
+- name: django
+  version: "1.11.8"
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'mysite.settings'
 
 skip_files:
 - ^(.*/)?#.*#$
