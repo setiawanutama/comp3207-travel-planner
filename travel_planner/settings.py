@@ -51,13 +51,13 @@ INSTALLED_APPS = [
 	# django-allauth needs this
 	'django.contrib.sites',
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
 	
-    # include the providers you want to enable:
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.google',
+    # # include the providers you want to enable:
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.google',
 	
 	'trips',
 ]
