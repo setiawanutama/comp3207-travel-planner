@@ -1,0 +1,362 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>TravelPlanner | Trip Details</title>
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}"/ >
+		<link rel="stylesheet" href="{% static 'css/AdminLTE.min.css' %}">
+		<!-- AdminLTE Skins. Choose a skin from the css/skins
+		folder instead of downloading all of them to reduce the load. -->
+		<link rel="stylesheet" href="css/skins/skin-blue.min.css">
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
+			<header class="main-header">
+				<a href="#" class="logo">
+					<span class="logo-mini"><b>T</b>P</span>
+					<span class="logo-lg"><b>Travel</b>Planner</span>
+				</a>
+				<nav class="navbar navbar-static-top">
+					<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+							<li class="dropdown user user-menu">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+									<img src="img/user-160x160.jpg" class="user-image">
+									<span class="hidden-xs">Setiawan Utama</span>
+								</a>
+								<ul class="dropdown-menu">
+									<!-- User image -->
+									<li class="user-header">
+										<img src="img/user-160x160.jpg" class="img-circle">
+										<p>Setiawan Utama</p>
+									</li>
+									<li class="user-footer">
+										<div class="pull-right">
+											<a href="#" class="btn btn-default btn-flat">Sign out</a>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</header>
+			<aside class="main-sidebar">
+				<section class="sidebar">
+					<ul class="sidebar-menu" data-widget="tree">
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-file-o"></i> <span>Add New Trip</span>
+							</a>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-list-alt"></i> <span>Trip Details</span>
+							</a>
+						</li>
+					</ul>
+				</section>
+			</aside>
+			<div class="content-wrapper">
+				<section class="content-header">
+					<h1>
+						Trip Details
+					</h1>
+				</section>
+				<section class="content">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="box box-primary">
+								<div class="box-body box-profile">
+									<img style="width: 100%;" class="profile-user-img img-responsive img-rounded" src="img/paris.jpg" alt="">
+									<h3 class="profile-username text-center">Eiffel Tower</h3>
+									<p class="text-muted text-center">Paris</p>
+									<ul class="list-group list-group-unbordered">
+										<li class="list-group-item">
+											<b>Followers</b> <a class="pull-right">1,322</a>
+										</li>
+									</ul>
+									<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+								</div>
+							</div>
+							<div class="box box-primary">
+								<div class="box-header with-border">
+									<h3 class="box-title">Address Details</h3>
+								</div>
+								<div class="box-body">
+									<strong><i class="fa fa-book margin-r-5"></i> Name</strong>
+									<p class="text-muted">
+										Eiffel Tower
+									</p>
+									<hr>
+									<strong><i class="fa fa-map-marker margin-r-5"></i> Latitude</strong>
+									<p class="text-muted">48.8583698</p>
+									<hr>
+									<strong><i class="fa fa-map-marker margin-r-5"></i> Longitude</strong>
+									<p class="text-muted">2.2944833000000244</p>
+									<hr>
+									<strong><i class="fa fa-pencil margin-r-5"></i> Country</strong>
+									<p>
+										<span class="label label-warning">France</span>
+									</p>
+									<hr>
+									<strong><i class="fa fa-file-text-o margin-r-5"></i> Locality</strong>
+									<p class="text-muted">Paris</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div class="nav-tabs-custom">
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
+									<li><a href="#new-trip" data-toggle="tab">New Trip Plan</a></li>
+									<li><a href="#insert-destination" data-toggle="tab">Insert Destination</a></li>
+								</ul>
+								<div class="tab-content">
+									<div class="active tab-pane" id="timeline">
+										<ul class="timeline timeline-inverse">
+											<li class="time-label">
+												<span class="bg-red">
+													10 Feb. 2017
+												</span>
+											</li>
+											<li>
+												<i class="fa fa-flag bg-blue"></i>
+												<div class="timeline-item">
+													<span class="time"><i class="fa fa-clock-o"></i> 10:00</span>
+													<h3 class="timeline-header"><a href="#">Highfield Interchange</a> Southampton, UK</h3>
+													<div class="timeline-body">
+														<strong><i class="fa fa-group margin-r-5"></i> Meeting Point</strong>
+														<p>Highfield Interchange Unilink Bus Station</p>
+													</div>
+													<div class="timeline-footer">
+														<a class="btn btn-primary btn-xs">Insert Destination</a>
+														<a class="btn btn-danger btn-xs">Delete</a>
+													</div>
+												</div>
+											</li>
+											<li>
+												<i class="fa fa-map-pin bg-aqua"></i>
+												<div class="timeline-item">
+													<span class="time"><i class="fa fa-clock-o"></i> 12:30</span>
+													<h3 class="timeline-header"><a href="#">London Eye</a> London, UK</h3>
+													<div class="timeline-body">
+														<strong><i class="fa fa-group margin-r-5"></i> Meeting Point</strong>
+														<p>Westminster Bridge</p>
+													</div>
+													<div class="timeline-footer">
+														<a class="btn btn-primary btn-xs">Insert Destination</a>
+														<a class="btn btn-danger btn-xs">Delete</a>
+													</div>
+												</div>
+											</li>
+											<li>
+												<i class="fa fa-map-pin bg-yellow"></i>
+												<div class="timeline-item">
+													<span class="time"><i class="fa fa-clock-o"></i> 13:45</span>
+													<h3 class="timeline-header"><a href="#">Buckingham Palace</a> London, UK</h3>
+													<div class="timeline-body">
+														<strong><i class="fa fa-group margin-r-5"></i> Meeting Point</strong>
+														<p>Victoria Memorial Monument</p>
+													</div>
+													<div class="timeline-footer">
+														<a class="btn btn-primary btn-xs">Insert Destination</a>
+														<a class="btn btn-danger btn-xs">Delete</a>
+													</div>
+												</div>
+											</li>
+											<li class="time-label">
+												<span class="bg-green">
+													13 Feb. 2017
+												</span>
+											</li>
+											<li>
+												<i class="fa fa-flag-checkered bg-purple"></i>
+												<div class="timeline-item">
+													<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+													<h3 class="timeline-header"><a href="#">Eiffel Tower</a> Paris, France</h3>
+													<div class="timeline-body">
+														<p>Dismissed at final destination.</p>
+													</div>
+													<div class="timeline-footer">
+														<a class="btn btn-primary btn-xs">Insert Destination</a>
+														<a class="btn btn-danger btn-xs">Delete</a>
+													</div>
+												</div>
+											</li>
+											<li>
+												<i class="fa fa-clock-o bg-gray"></i>
+											</li>
+										</ul>
+									</div>
+									<div class="tab-pane" id="new-trip">
+										<form>
+											<div class="box-body">
+												<div class="form-group">
+													<label for="origin-input">Origin Location</label>
+													<input type="text" class="form-control" id="origin-input" placeholder="Enter an origin location" required>
+												</div>
+												<div class="form-group">
+													<label for="start_date">Start Date</label>
+													<div class="input-group" id="datetimepicker_start_date">
+														<input type="text" class="form-control" id="start_date" placeholder="Pick start date & time" required>
+														<span class="input-group-addon">
+															<i class="fa fa-calendar"></i>
+														</span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="destination-input">Destination Location</label>
+													<input type="text" class="form-control" id="destination-input" placeholder="Enter a destination location" required>
+												</div>
+												<div class="form-group">
+													<label for="finish_date">Finish Date</label>
+													<div class="input-group" id="datetimepicker_finish_date">
+														<input type="text" class="form-control" id="finish_date" placeholder="Pick finish date & time" required>
+														<span class="input-group-addon">
+															<i class="fa fa-calendar"></i>
+														</span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="photo_url">Photo URL <code>optional</code></label>
+													<div class="input-group">
+														<input type="url" class="form-control" id="photo_url" placeholder="Enter image URL">
+														<span class="input-group-addon">
+															<i class="fa fa-camera"></i>
+														</span>
+													</div>
+													<p class="help-block">Preferably *.jpg, *.png with dimension 1024x768 px</p>
+												</div>
+												<div class="form-group">
+													<label for="meeting_point">Meeting Point <code>optional</code></label>
+													<div class="input-group">
+														<input type="text" class="form-control" id="meeting_point" placeholder="Enter a meeting point location">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="box-footer">
+												<button type="submit" class="btn btn-primary">Save</button>
+											</div>
+										</form>
+									</div>
+									<div class="tab-pane" id="insert-destination">
+										<form>
+											<div class="box-body">
+												<div class="form-group">
+													<label for="parent-destination">Insert After</label>
+													<select class="form-control" name="parent-destination" id="parent-destination">
+														<option>Highfield Interchange</option>
+														<option>London Eye</option>
+														<option>Buckingham Palace</option>
+														<option>Eiffel Tower</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label for="new-destination-input">Destination Location</label>
+													<input type="text" class="form-control" id="new-destination-input" placeholder="Enter a new destination location" required>
+												</div>
+												<div class="form-group">
+													<label for="start_date">Start Date</label>
+													<div class="input-group" id="datetimepicker_start_date2">
+														<input type="text" class="form-control" id="start_date" placeholder="Pick start date & time" required>
+														<span class="input-group-addon">
+															<i class="fa fa-calendar"></i>
+														</span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="photo_url">Photo URL <code>optional</code></label>
+													<div class="input-group">
+														<input type="url" class="form-control" id="photo_url" placeholder="Enter image URL">
+														<span class="input-group-addon">
+															<i class="fa fa-camera"></i>
+														</span>
+													</div>
+													<p class="help-block">Preferably *.jpg, *.png with dimension 1024x768 px</p>
+												</div>
+												<div class="form-group">
+													<label for="meeting_point">Meeting Point <code>optional</code></label>
+													<div class="input-group">
+														<input type="text" class="form-control" id="meeting_point" placeholder="Enter a meeting point location">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="box-footer">
+												<button type="submit" class="btn btn-primary">Save</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<footer class="main-footer"></footer>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/adminlte.min.js"></script>
+		
+		<script src="js/moment.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbBTdzOcvm9LeBmREK1RBvRdAgPIiDzQY&libraries=places"></script>
+		<script src="js/jquery.geocomplete.min.js"></script>
+		
+		<script>
+			$(function() {
+				$(function () {
+					var datetimepicker_options = {
+						format: "DD/MM/YYYY HH:mm",
+						showTodayButton: true,
+						showClear: true,
+						showClose: true,
+						allowInputToggle: true,
+						keepOpen: false,
+						widgetPositioning: {
+							horizontal: "left"
+						}
+					};
+					$("#datetimepicker_start_date").datetimepicker(datetimepicker_options);
+					$("#datetimepicker_start_date2").datetimepicker(datetimepicker_options);
+					$("#datetimepicker_finish_date").datetimepicker(datetimepicker_options);
+				});
+				
+				$("#origin-input").geocomplete({});
+				$("#destination-input").geocomplete()
+				.bind("geocode:result", function(event, result){
+					<!-- alert(result.formatted_address); -->
+				})
+				.bind("geocode:geocode:error", function(event, result){
+					<!-- alert(result); -->
+				});
+			});
+		</script>
+	</body>
+</html>
