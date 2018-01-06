@@ -33,14 +33,6 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,21 +40,35 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	# django-allauth needs this
 	'django.contrib.sites',
+	
+	'social_django',
 
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-	
-    # # include the providers you want to enable:
-    # 'allauth.socialaccount.providers.facebook',
-    # 'allauth.socialaccount.providers.google',
-	
 	'trips',
 ]
 
-SITE_ID = 1
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+	'social_core.backends.facebook.FacebookOAuth2',
+	
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'dashboard'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1415992441840163' # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '6949d6e3bbf53817ebd3ac3226d06c30' # App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'fields': 'id, name, email, gender'
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,6 +78,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	
+	'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'travel_planner.urls'
@@ -87,6 +95,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+				
+				'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },

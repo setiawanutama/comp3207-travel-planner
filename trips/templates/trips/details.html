@@ -8,12 +8,12 @@
 		<title>TravelPlanner | Trip Details</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-		<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
 		<link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}"/ >
 		<link rel="stylesheet" href="{% static 'css/AdminLTE.min.css' %}">
 		<!-- AdminLTE Skins. Choose a skin from the css/skins
 		folder instead of downloading all of them to reduce the load. -->
-		<link rel="stylesheet" href="css/skins/skin-blue.min.css">
+		<link rel="stylesheet" href="{% static 'css/skins/skin-blue.min.css' %}">
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -320,14 +320,13 @@
 			</div>
 			<footer class="main-footer"></footer>
 		</div>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/adminlte.min.js"></script>
-		
-		<script src="js/moment.min.js"></script>
-		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/adminlte.min.js' %}"></script>
+		<script src="{% static 'js/moment.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbBTdzOcvm9LeBmREK1RBvRdAgPIiDzQY&libraries=places"></script>
-		<script src="js/jquery.geocomplete.min.js"></script>
+		<script src="{% static 'js/jquery.geocomplete.min.js' %}"></script>
 		
 		<script>
 			$(function() {
