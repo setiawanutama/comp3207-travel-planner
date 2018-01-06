@@ -16,6 +16,8 @@ libraries:
   version: "1.2.5"
 - name: django
   version: "1.11"
+- name: ssl
+  version: "2.7.11"
 
 env_variables:
   DJANGO_SETTINGS_MODULE: 'travel_planner.settings'
