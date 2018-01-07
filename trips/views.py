@@ -4,32 +4,20 @@ from django.http import HttpResponse
 
 @login_required
 def dashboard(request):
-	full_name = request.user.get_full_name()
-	data = {
-		'full_name': full_name,
-	}
+	data = {}
 	return render(request, 'trips/dashboard.html', data)
 
 @login_required
 def add_new_trip(request):
-	full_name = request.user.get_full_name()
-	data = {
-		'full_name': full_name,
-	}
+	data = {}
 	return render(request, 'trips/new_trip.html', data)
 
 @login_required
 def list(request):
-	full_name = request.user.get_full_name()
-	data = {
-		'full_name': full_name,
-	}
+	data = {}
 	return render(request, 'trips/trip_list.html', data)
 
 @login_required
 def details(request):
-	full_name = request.user.get_full_name()
-	data = {
-		'full_name': full_name,
-	}
+	data = {}
 	return render(request, 'trips/details.html', data)

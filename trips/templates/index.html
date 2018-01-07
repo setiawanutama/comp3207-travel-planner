@@ -47,7 +47,7 @@
             <div class="vert-text parallax">
                 <h1 class="header-text">Travel the world</h1>
                 <h3 class="header-text">
-                    <em class="header-text">Let's travel together</em>
+                    <em class="header-text">Let's travel together{% if user.first_name %}, {{ user.first_name }}{% endif %}</em>
 				</h3><br />
                 <a href="#about" class="btn header-btn scrollto">Find Out More</a>
                 <br/>

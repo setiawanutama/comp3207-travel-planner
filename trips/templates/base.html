@@ -45,7 +45,7 @@
 									<!-- User image -->
 									<li class="user-header">
 										<img src="{% static 'img/user-160x160.jpg' %}" class="img-circle">
-										<p>{{ full_name }}</p>
+										<p>{{ user.get_full_name }}</p>
 									</li>
 									<li class="user-footer">
 										<div class="pull-right">
@@ -90,18 +90,26 @@
 		<script src="{% static 'js/jquery.geocomplete.min.js' %}"></script>
 		<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
 		<script src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=1415992441840163';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 		<script>
 			$(function() {
 				// ajaxify
 				<!-- $('#main-content').ajaxify({ -->
-					<!-- refresh : true, -->
-					<!-- previewoff: true, -->
-					<!-- deltas : true, // true = deltas loaded, false = all scripts loaded -->
-					<!-- asyncdef : true, // default async value for dynamically inserted external scripts, false = synchronous / true = asynchronous -->
-					<!-- inline : true, // true = all inline scripts loaded, false = only specific inline scripts are loaded -->
-					<!-- inlineappend : true, // append scripts to the main content div, instead of "eval"-ing them -->
-					<!-- style : true, // true = all style tags in the head loaded, false = style tags on target page ignored -->
-					<!-- prefetch : true, // Plugin pre-fetches pages on hoverIntent -->
+				<!-- refresh : true, -->
+				<!-- previewoff: true, -->
+				<!-- deltas : true, // true = deltas loaded, false = all scripts loaded -->
+				<!-- asyncdef : true, // default async value for dynamically inserted external scripts, false = synchronous / true = asynchronous -->
+				<!-- inline : true, // true = all inline scripts loaded, false = only specific inline scripts are loaded -->
+				<!-- inlineappend : true, // append scripts to the main content div, instead of "eval"-ing them -->
+				<!-- style : true, // true = all style tags in the head loaded, false = style tags on target page ignored -->
+				<!-- prefetch : true, // Plugin pre-fetches pages on hoverIntent -->
 				<!-- }); -->
 			});
 		</script>
