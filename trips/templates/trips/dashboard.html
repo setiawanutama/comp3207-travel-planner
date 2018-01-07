@@ -1,6 +1,37 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
 
 {% block content %}
-  <h2>Homepage</h2>
-  <p>Hello, {{ user.first_name }}.</p>
+<section class="content-header">
+	<h1>
+		Dashboard
+	</h1>
+</section>
+<section class="content">
+	<div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box">
+				<span class="info-box-icon bg-orange"><i class="ion ion-ios-location"></i></span>
+				<div class="info-box-content">
+					<span class="info-box-text">Planned Trips</span>
+					<span class="info-box-number">4</span>
+				</div>
+			</div>
+		</div>
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box">
+				<span class="info-box-icon bg-green"><i class="ion ion-map"></i></span>
+				<div class="info-box-content">
+					<span class="info-box-text">Joined Trips</span>
+					<span class="info-box-number">23</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 {% endblock %}

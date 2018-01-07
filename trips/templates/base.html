@@ -9,6 +9,8 @@
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 		<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'Ionicons/css/ionicons.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.min.css' %}"/ >
 		<link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}"/ >
 		<link rel="stylesheet" href="{% static 'css/AdminLTE.min.css' %}">
 		<link rel="stylesheet" href="{% static 'css/skins/skin-blue.min.css' %}">
@@ -24,7 +26,7 @@
 	<body class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
 			<header class="main-header">
-				<a href="#" class="logo">
+				<a href="/" class="logo no-ajaxy">
 					<span class="logo-mini"><b>T</b>P</span>
 					<span class="logo-lg"><b>Travel</b>Planner</span>
 				</a>
@@ -47,7 +49,7 @@
 									</li>
 									<li class="user-footer">
 										<div class="pull-right">
-											<a href="/signout/" class="btn btn-default btn-flat">Sign out</a>
+											<a href="/signout/" class="no-ajaxy btn btn-default btn-flat">Sign out</a>
 										</div>
 									</li>
 								</ul>
@@ -59,20 +61,20 @@
 			<aside class="main-sidebar">
 				<section class="sidebar">
 					<ul class="sidebar-menu" data-widget="tree">
-						<li class="treeview">
-							<a href="#">
-								<i class="fa fa-file-o"></i> <span>Add New Trip</span>
+						<li>
+							<a href="/trips/new/">
+								<i class="fa fa-file-o"></i> <span>Plan New Trip</span>
 							</a>
 						</li>
-						<li class="treeview">
-							<a href="/trips/details/">
-								<i class="fa fa-list-alt"></i> <span>Trip Details</span>
+						<li>
+							<a href="/trips/list/">
+								<i class="fa fa-list-alt"></i> <span>Trip Plans</span>
 							</a>
 						</li>
 					</ul>
 				</section>
 			</aside>
-			<div class="content-wrapper">
+			<div id="main-content" class="content-wrapper">
 				{% block content %}
 				{% endblock %}
 			</div>
@@ -83,37 +85,27 @@
 		<script src="{% static 'js/adminlte.min.js' %}"></script>
 		<script src="{% static 'js/moment.min.js' %}"></script>
 		<script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ajaxify/7.1.0/ajaxify.min.js"></script> -->
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbBTdzOcvm9LeBmREK1RBvRdAgPIiDzQY&libraries=places"></script>
 		<script src="{% static 'js/jquery.geocomplete.min.js' %}"></script>
-		
+		<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+		<script src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
 		<script>
 			$(function() {
-				$(function () {
-					var datetimepicker_options = {
-						format: "DD/MM/YYYY HH:mm",
-						showTodayButton: true,
-						showClear: true,
-						showClose: true,
-						allowInputToggle: true,
-						keepOpen: false,
-						widgetPositioning: {
-							horizontal: "left"
-						}
-					};
-					$("#datetimepicker_start_date").datetimepicker(datetimepicker_options);
-					$("#datetimepicker_start_date2").datetimepicker(datetimepicker_options);
-					$("#datetimepicker_finish_date").datetimepicker(datetimepicker_options);
-				});
-				
-				$("#origin-input").geocomplete({});
-				$("#destination-input").geocomplete()
-				.bind("geocode:result", function(event, result){
-					<!-- alert(result.formatted_address); -->
-				})
-				.bind("geocode:geocode:error", function(event, result){
-					<!-- alert(result); -->
-				});
+				// ajaxify
+				<!-- $('#main-content').ajaxify({ -->
+					<!-- refresh : true, -->
+					<!-- previewoff: true, -->
+					<!-- deltas : true, // true = deltas loaded, false = all scripts loaded -->
+					<!-- asyncdef : true, // default async value for dynamically inserted external scripts, false = synchronous / true = asynchronous -->
+					<!-- inline : true, // true = all inline scripts loaded, false = only specific inline scripts are loaded -->
+					<!-- inlineappend : true, // append scripts to the main content div, instead of "eval"-ing them -->
+					<!-- style : true, // true = all style tags in the head loaded, false = style tags on target page ignored -->
+					<!-- prefetch : true, // Plugin pre-fetches pages on hoverIntent -->
+				<!-- }); -->
 			});
 		</script>
+		{% block custom_script %}
+		{% endblock %}
 	</body>
 </html>

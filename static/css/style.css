@@ -274,8 +274,8 @@ transition: all 0.4s ease 0s;
   color: #fff;
   background: rgba(255,255,255,0.2);
   text-decoration: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
 }
 
 .sidebar-nav li a:active,

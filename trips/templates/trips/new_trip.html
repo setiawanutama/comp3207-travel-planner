@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Plan New Trip{% endblock %}
+
+{% block content %}
+<section class="content-header">
+	<h1>Plan New Trip</h1>
+	<ol class="breadcrumb">
+		<li><a class="no-ajaxy" href="/"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="/trips/">Trips</a></li>
+        <li class="active">Plan New Trip</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-success">
+				<form>
+					<div class="box-body">
+						<div class="form-group">
+							<label for="origin-input">Origin Location</label>
+							<input type="text" class="form-control" id="origin-input" placeholder="Enter an origin location" required>
+						</div>
+						<div class="form-group">
+							<label for="start_date">Start Date</label>
+							<div class="input-group" id="datetimepicker_start_date">
+								<input type="text" class="form-control" id="start_date" placeholder="Pick start date & time" required>
+								<span class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="destination-input">Destination Location</label>
+							<input type="text" class="form-control" id="destination-input" placeholder="Enter a destination location" required>
+						</div>
+						<div class="form-group">
+							<label for="finish_date">Finish Date</label>
+							<div class="input-group" id="datetimepicker_finish_date">
+								<input type="text" class="form-control" id="finish_date" placeholder="Pick finish date & time" required>
+								<span class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="photo_url">Photo URL <code>optional</code></label>
+							<div class="input-group">
+								<input type="url" class="form-control" id="photo_url" placeholder="Enter image URL">
+								<span class="input-group-addon">
+									<i class="fa fa-camera"></i>
+								</span>
+							</div>
+							<p class="help-block">Preferably *.jpg, *.png with dimension 1024x768 px</p>
+						</div>
+						<div class="form-group">
+							<label for="meeting_point">Meeting Point <code>optional</code></label>
+							<div class="input-group">
+								<input type="text" class="form-control" id="meeting_point" placeholder="Enter a meeting point location">
+								<span class="input-group-addon">
+									<i class="fa fa-group"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="box-footer">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block custom_script %}
+<script>
+	$(function () {
+		var datetimepicker_options = {
+			format: "DD/MM/YYYY HH:mm",
+			showTodayButton: true,
+			showClear: true,
+			showClose: true,
+			allowInputToggle: true,
+			keepOpen: false,
+			widgetPositioning: {
+				horizontal: "left"
+			}
+		};
+		$("#datetimepicker_start_date").datetimepicker(datetimepicker_options);
+		$("#datetimepicker_start_date2").datetimepicker(datetimepicker_options);
+		$("#datetimepicker_finish_date").datetimepicker(datetimepicker_options);
+		
+		$("#origin-input").geocomplete({});
+		$("#destination-input").geocomplete()
+		.bind("geocode:result", function(event, result){
+			<!-- alert(result.formatted_address); -->
+		})
+		.bind("geocode:geocode:error", function(event, result){
+			<!-- alert(result); -->
+		});
+	});
+</script>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Trip Plans{% endblock %}
+
+{% block content %}
+<section class="content-header">
+	<h1>Trip Plans</h1>
+	<ol class="breadcrumb">
+        <li><a href="/trips/"><i class="fa fa-home"></i> Dashboard</a></li>
+        <li class="active">Trip Plans</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+        <div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+				</div>
+				<div class="box-body table-responsive">
+					<table id="trip-list" class="table table-bordered table-striped table-hover">
+						<thead>
+							<tr>
+								<th style="text-align: center; min-width: 15%;">Origin</th>
+								<th style="text-align: center;">Destination</th>
+								<th style="text-align: center; min-width: 13%;">Start Date</th>
+								<th style="text-align: center; min-width: 13%;">Finish Date</th>
+								<th style="text-align: center; width: 6%;">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Southampton (UK)</td>
+								<td>London <i class="fa fa-fw fa-arrow-right"></i> Manchester <i class="fa fa-fw fa-arrow-right"></i> Edinburgh
+								</td>
+								<td>1 February 2018</td>
+								<td>24 February 2018</td>
+								<td style="text-align: center;">
+									<div class="btn-group-vertical">
+										<a href="/trips/details/" class="btn btn-success" title="Detail"><i class="fa fa-eye"></i></a>
+										<a class="btn btn-danger" title="Join"><i class="fa fa-heart"></i></a>
+									</div>
+								</td>
+							</tr>
+							
+						</tbody>
+						<tfoot>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block custom_script %}
+<script>
+	$(function () {
+		$('#trip-list').DataTable({
+			'ordering' : false,
+		});
+	})
+</script>
+{% endblock %}

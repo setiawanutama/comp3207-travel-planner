@@ -83,7 +83,7 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'dashboard'
+# SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'dashboard'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 # SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
@@ -123,7 +123,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'travel_planner.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
