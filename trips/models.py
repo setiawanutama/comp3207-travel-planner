@@ -3,10 +3,15 @@ from django.db import models
 
 class Trip(models.Model):
 	creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	origin = models.IntegerField(null=True, blank=True)
+	start_date = models.DateTimeField(auto_now=True)
+	destination = models.IntegerField(null=True, blank=True)
+	finish_date = models.DateTimeField(auto_now=True)
+	route = models.TextField()# will be served as list of locations
 	num_followers = models.IntegerField(default=0)
 
 class Location(models.Model):
-	name = models.CharField(max_length=100)
+	name = models.CharField(max_length=300)
 	lat = models.DecimalField(null=False, max_digits=10, decimal_places=8)
 	long = models.DecimalField(null=False, max_digits=11, decimal_places=8)
 	start_date = models.DateTimeField()
