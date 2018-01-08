@@ -61,8 +61,9 @@
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
-					<li><a href="#insert-destination" data-toggle="tab">Insert Destination</a></li>
+					<li><a href="#map" data-toggle="tab">Map</a></li>
 					<li><a href="#fb-comment" data-toggle="tab">Discussions</a></li>
+					<li><a href="#insert-destination" data-toggle="tab">Insert Destination</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="active tab-pane" id="timeline">
@@ -141,6 +142,14 @@
 							</li>
 						</ul>
 					</div>
+					<div class="tab-pane" id="map">
+						<div id="controls"></div>
+						<div id="gmap" style="with: 100%;height: 600px;"></div>
+						
+					</div>
+					<div class="tab-pane" id="fb-comment">
+						<div class="fb-comments" data-order-by="reverse_time" data-width="100%"></div>
+					</div>
 					<div class="tab-pane" id="insert-destination">
 						<form>
 							<div class="box-body">
@@ -191,9 +200,6 @@
 							</div>
 						</form>
 					</div>
-					<div class="tab-pane" id="fb-comment">
-						<div class="fb-comments" data-href="" data-numposts="3" data-order-by="reverse_time" data-width="100%"></div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -219,14 +225,57 @@
 		$("#datetimepicker_start_date2").datetimepicker(datetimepicker_options);
 		$("#datetimepicker_finish_date").datetimepicker(datetimepicker_options);
 		
-		$("#origin-input").geocomplete({});
-		$("#destination-input").geocomplete()
+		$("#new-origin-input").geocomplete({});
+		$("#new-destination-input").geocomplete()
 		.bind("geocode:result", function(event, result){
 			<!-- alert(result.formatted_address); -->
 		})
 		.bind("geocode:geocode:error", function(event, result){
 			<!-- alert(result); -->
 		});
+		
+		var LocsAv2 = [
+		{
+			lat: 45.9,
+			lon: 10.9,
+			title: 'Zone A1',
+			html: '<h3>Content A1</h3>',
+			type : 'circle',
+			circle_options: {
+				radius: 200000
+			},
+			draggable: true
+		},
+		{
+			lat: 44.8,
+			lon: 1.7,
+			title: 'Draggable',
+			html: '<h3>Content B1</h3>',
+			show_infowindow: false,
+			visible: true,
+			draggable: true
+		},
+		{
+			lat: 51.5,
+			lon: -1.1,
+			title: 'Title C1',
+			html: [
+            '<h3>Content C1</h3>',
+            '<p>Lorem Ipsum..</p>'
+			].join(''),
+			zoom: 8,
+			visible: true
+		}
+		];
+		new Maplace({
+			locations: LocsAv2,
+			map_div: '#gmap',
+			controls_div: '#controls',
+			controls_type: 'list',
+			controls_on_map: false,
+			view_all_text: 'Start',
+			type: 'polyline'
+		}).Load();
 	});
 </script>
 {% endblock %}

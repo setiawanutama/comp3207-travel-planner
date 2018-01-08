@@ -17,48 +17,95 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="box box-success">
-				<form>
+				<form id="form-new-trip" method="post" action="{% url 'trips:new' %}" >
+					{% csrf_token %}
 					<div class="box-body">
-						<div class="form-group">
+						<div class="form-group{% if form.origin_input.errors %} has-error{% endif %}" id="origin-location">
+							{% if form.origin_input.errors %}
+								{% for error in form.origin_input.errors %}
+							<label for="origin-input">{{ error }}</label>
+								{% endfor %}
+							{% else %}
 							<label for="origin-input">Origin Location</label>
-							<input type="text" class="form-control" id="origin-input" placeholder="Enter an origin location" required>
+							{% endif %}
+							{{ form.origin_input }}
+							{{ form.origin_name }}
+							{{ form.origin_lat }}
+							{{ form.origin_lng }}
+							{{ form.origin_state }}
+							{{ form.origin_country }}
 						</div>
-						<div class="form-group">
+						<div class="form-group{% if form.start_date.errors %} has-error{% endif %}">
+							{% if form.start_date.errors %}
+								{% for error in form.start_date.errors %}
+							<label for="origin-input">{{ error }}</label>
+								{% endfor %}
+							{% else %}
 							<label for="start_date">Start Date</label>
+							{% endif %}
 							<div class="input-group" id="datetimepicker_start_date">
-								<input type="text" class="form-control" id="start_date" placeholder="Pick start date & time" required>
+								{{ form.start_date }}
 								<span class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group{% if form.destination_input.errors %} has-error{% endif %}" id="destination-location">
+							{% if form.destination_input.errors %}
+								{% for error in form.destination_input.errors %}
+							<label for="destination-input">{{ error }}</label>
+								{% endfor %}
+							{% else %}
 							<label for="destination-input">Destination Location</label>
-							<input type="text" class="form-control" id="destination-input" placeholder="Enter a destination location" required>
+							{% endif %}
+							{{ form.destination_input }}
+							{{ form.destination_name }}
+							{{ form.destination_lat }}
+							{{ form.destination_lng }}
+							{{ form.destination_state }}
+							{{ form.destination_country }}
 						</div>
-						<div class="form-group">
+						<div class="form-group{% if form.finish_date.errors %} has-error{% endif %}">
+							{% if form.finish_date.errors %}
+								{% for error in form.finish_date.errors %}
+							<label for="finish_date">{{ error }}</label>
+								{% endfor %}
+							{% else %}
 							<label for="finish_date">Finish Date</label>
+							{% endif %}
 							<div class="input-group" id="datetimepicker_finish_date">
-								<input type="text" class="form-control" id="finish_date" placeholder="Pick finish date & time" required>
+								{{ form.finish_date }}
 								<span class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</span>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="photo_url">Photo URL <code>optional</code></label>
+						<div class="form-group{% if form.photo_url.errors %} has-error{% endif %}">
+							{% if form.photo_url.errors %}
+								{% for error in form.photo_url.errors %}
+							<label for="photo_url">{{ error }}</label>
+								{% endfor %}
+							{% else %}
+							<label for="photo_url">Destination Photo URL <code>optional</code></label>
+							{% endif %}
 							<div class="input-group">
-								<input type="url" class="form-control" id="photo_url" placeholder="Enter image URL">
+								{{ form.photo_url }}
 								<span class="input-group-addon">
 									<i class="fa fa-camera"></i>
 								</span>
 							</div>
 							<p class="help-block">Preferably *.jpg, *.png with dimension 1024x768 px</p>
 						</div>
-						<div class="form-group">
+						<div class="form-group{% if form.meeting_point.errors %} has-error{% endif %}">
+							{% if form.meeting_point.errors %}
+								{% for error in form.meeting_point.errors %}
+							<label for="meeting_point">{{ error }}</label>
+								{% endfor %}
+							{% else %}
 							<label for="meeting_point">Meeting Point <code>optional</code></label>
+							{% endif %}
 							<div class="input-group">
-								<input type="text" class="form-control" id="meeting_point" placeholder="Enter a meeting point location">
+								{{ form.meeting_point }}
 								<span class="input-group-addon">
 									<i class="fa fa-group"></i>
 								</span>
@@ -90,16 +137,16 @@
 			}
 		};
 		$("#datetimepicker_start_date").datetimepicker(datetimepicker_options);
-		$("#datetimepicker_start_date2").datetimepicker(datetimepicker_options);
 		$("#datetimepicker_finish_date").datetimepicker(datetimepicker_options);
 		
-		$("#origin-input").geocomplete({});
-		$("#destination-input").geocomplete()
-		.bind("geocode:result", function(event, result){
-			<!-- alert(result.formatted_address); -->
-		})
-		.bind("geocode:geocode:error", function(event, result){
-			<!-- alert(result); -->
+		<!-- jQuery Geocoding and Places Autocomplete -->
+		$("#origin-input").geocomplete({
+			details: "#origin-location",
+			detailsAttribute: "data-geo"
+		});
+		$("#destination-input").geocomplete({
+			details: "#destination-location",
+			detailsAttribute: "data-geo"
 		});
 	});
 </script>
