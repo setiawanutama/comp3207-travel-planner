@@ -18,3 +18,5 @@ If experience error "Site matching query does not exist.", here's the solution:
 (4) Site.objects.create(name='comp3207-travel-planner-189701.appspot.com', domain='comp3207-travel-planner-189701.appspot.com')
 
 or go to /admin/ panel and add Site
+
+Tutorial for manytomany relationship: https://ponytech.net/blog/convert-foreign-key-many-to-many-using-django-migrations

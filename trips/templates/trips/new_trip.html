@@ -10,36 +10,39 @@
 	<ol class="breadcrumb">
 		<li><a class="no-ajaxy" href="/"><i class="fa fa-home"></i> Home</a></li>
 		<li><a href="/trips/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Plan New Trip</li>
+		<li class="active">Plan New Trip</li>
 	</ol>
 </section>
 <section class="content">
 	<div class="row">
 		<div class="col-md-6">
 			<div class="box box-success">
-				<form id="form-new-trip" method="post" action="{% url 'trips:new' %}" >
+				<form id="form-new-trip" method="post" action="{% url 'trips:new' %}">
 					{% csrf_token %}
 					<div class="box-body">
-						<div class="form-group{% if form.origin_input.errors %} has-error{% endif %}" id="origin-location">
+						<div class="location form-group{% if form.origin_input.errors %} has-error{% endif %}"
+							 id="origin-location">
 							{% if form.origin_input.errors %}
-								{% for error in form.origin_input.errors %}
+							{% for error in form.origin_input.errors %}
 							<label for="origin-input">{{ error }}</label>
-								{% endfor %}
+							{% endfor %}
 							{% else %}
-							<label for="origin-input">Origin Location</label>
+							<label for="origin-input">Origin / Start Location</label>
 							{% endif %}
 							{{ form.origin_input }}
+							<div class="details">
 							{{ form.origin_name }}
 							{{ form.origin_lat }}
 							{{ form.origin_lng }}
 							{{ form.origin_state }}
 							{{ form.origin_country }}
+							</div>
 						</div>
 						<div class="form-group{% if form.start_date.errors %} has-error{% endif %}">
 							{% if form.start_date.errors %}
-								{% for error in form.start_date.errors %}
+							{% for error in form.start_date.errors %}
 							<label for="origin-input">{{ error }}</label>
-								{% endfor %}
+							{% endfor %}
 							{% else %}
 							<label for="start_date">Start Date</label>
 							{% endif %}
@@ -50,26 +53,29 @@
 								</span>
 							</div>
 						</div>
-						<div class="form-group{% if form.destination_input.errors %} has-error{% endif %}" id="destination-location">
+						<div class="location form-group{% if form.destination_input.errors %} has-error{% endif %}"
+							 id="destination-location">
 							{% if form.destination_input.errors %}
-								{% for error in form.destination_input.errors %}
+							{% for error in form.destination_input.errors %}
 							<label for="destination-input">{{ error }}</label>
-								{% endfor %}
+							{% endfor %}
 							{% else %}
-							<label for="destination-input">Destination Location</label>
+							<label for="destination-input">Final Destination Location</label>
 							{% endif %}
 							{{ form.destination_input }}
+							<div class="details">
 							{{ form.destination_name }}
 							{{ form.destination_lat }}
 							{{ form.destination_lng }}
 							{{ form.destination_state }}
 							{{ form.destination_country }}
+							</div>
 						</div>
 						<div class="form-group{% if form.finish_date.errors %} has-error{% endif %}">
 							{% if form.finish_date.errors %}
-								{% for error in form.finish_date.errors %}
+							{% for error in form.finish_date.errors %}
 							<label for="finish_date">{{ error }}</label>
-								{% endfor %}
+							{% endfor %}
 							{% else %}
 							<label for="finish_date">Finish Date</label>
 							{% endif %}
@@ -82,9 +88,9 @@
 						</div>
 						<div class="form-group{% if form.photo_url.errors %} has-error{% endif %}">
 							{% if form.photo_url.errors %}
-								{% for error in form.photo_url.errors %}
+							{% for error in form.photo_url.errors %}
 							<label for="photo_url">{{ error }}</label>
-								{% endfor %}
+							{% endfor %}
 							{% else %}
 							<label for="photo_url">Destination Photo URL <code>optional</code></label>
 							{% endif %}
@@ -98,9 +104,9 @@
 						</div>
 						<div class="form-group{% if form.meeting_point.errors %} has-error{% endif %}">
 							{% if form.meeting_point.errors %}
-								{% for error in form.meeting_point.errors %}
+							{% for error in form.meeting_point.errors %}
 							<label for="meeting_point">{{ error }}</label>
-								{% endfor %}
+							{% endfor %}
 							{% else %}
 							<label for="meeting_point">Meeting Point <code>optional</code></label>
 							{% endif %}
@@ -118,7 +124,22 @@
 				</form>
 			</div>
 		</div>
-	</div>
+		<div class="col-md-6">
+			<div class="nav-tabs-custom">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab" data-toggle="tab">Origin</a></li>
+					<li><a href="#tab2" data-toggle="tab">Destination</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="active tab-pane" id="tab">
+						<div id="map" style="height: 485px;"></div>
+					</div>
+					<div class="tab-pane" id="tab2">
+						<div id="map2" style="height: 485px;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 </section>
 {% endblock %}
 
@@ -139,14 +160,32 @@
 		$("#datetimepicker_start_date").datetimepicker(datetimepicker_options);
 		$("#datetimepicker_finish_date").datetimepicker(datetimepicker_options);
 		
-		<!-- jQuery Geocoding and Places Autocomplete -->
+		/* jQuery Geocoding and Places Autocomplete */
 		$("#origin-input").geocomplete({
 			details: "#origin-location",
-			detailsAttribute: "data-geo"
+			detailsAttribute: "data-geo",
+			map: "#map"
+		}).bind("geocode:result", function(event, result) {
+			$('.nav-tabs a[href="#tab"]').tab('show');
+			// fix maps not displaying correctly on bootstrap tab
+			var map = $(this).geocomplete("map");
+			var center = map.getCenter();
+			google.maps.event.trigger(map, 'resize');
+			map.setCenter(center);
+			map.setZoom(16);
 		});
 		$("#destination-input").geocomplete({
 			details: "#destination-location",
-			detailsAttribute: "data-geo"
+			detailsAttribute: "data-geo",
+			map: "#map2",
+		}).bind("geocode:result", function(event, result) {
+			$('.nav-tabs a[href="#tab2"]').tab('show');
+			// fix maps not displaying correctly on bootstrap tab
+			var map = $(this).geocomplete("map");
+			var center = map.getCenter();
+			google.maps.event.trigger(map, 'resize');
+			map.setCenter(center);
+			map.setZoom(16);
 		});
 	});
 </script>

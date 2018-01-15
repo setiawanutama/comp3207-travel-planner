@@ -8,43 +8,47 @@
 <section class="content-header">
 	<h1>Trip Plans</h1>
 	<ol class="breadcrumb">
-        <li><a class="no-ajaxy" href="/"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="/trips/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Trip Plans</li>
+		<li><a class="no-ajaxy" href="/"><i class="fa fa-home"></i> Home</a></li>
+		<li><a href="/trips/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+		<li class="active">Trip Plans</li>
 	</ol>
 </section>
 <section class="content">
 	<div class="row">
-        <div class="col-xs-12">
+		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
 				</div>
 				<div class="box-body table-responsive">
 					<table id="trip-list" class="table table-bordered table-striped table-hover">
 						<thead>
-							<tr>
-								<th style="text-align: center;">Origin</th>
-								<th style="text-align: center;">Route</th>
-								<th style="text-align: center; width: 14%;">Start Date</th>
-								<th style="text-align: center; width: 14%;">Finish Date</th>
-								<th style="text-align: center; width: 6%;">Action</th>
-							</tr>
+						<tr>
+							<th style="text-align: center;">Origin</th>
+							<th style="text-align: center;">Route</th>
+							<th style="text-align: center; width: 14%;">Start Date</th>
+							<th style="text-align: center; width: 14%;">Finish Date</th>
+							<th style="text-align: center; width: 6%;">Action</th>
+						</tr>
 						</thead>
 						<tbody>
-							{% for trip in trips %}
-							<tr>
-								<td>{{ trip.origin_name }}</td>
-								<td><i class="fa fa-flag"></i> {% autoescape off %}{{ trip.route }}{% endautoescape %} <i class="fa fa-flag-checkered"></i></td>
-								<td>{{ trip.start_date }}</td>
-								<td>{{ trip.finish_date }}</td>
-								<td style="text-align: center;">
-									<div class="btn-group-vertical">
-										<a href="/trips/details/{{ trip.id }}" class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></a>
-										<a id="btn-join-trip-{{ trip.id }}" data-trip="{{ trip.id }}" class="btn btn-warning btn-join-trip" title="Join"><i class="fa fa-heart"></i></a>
-									</div>
-								</td>
-							</tr>
-							{% endfor %}
+						{% for trip in trips %}
+						<tr>
+							<td>{{ trip.origin_name }}</td>
+							<td><i class="fa fa-flag"></i> {% autoescape off %}{{ trip.route }}{% endautoescape %} <i
+									class="fa fa-flag-checkered"></i></td>
+							<td>{{ trip.start_date }}</td>
+							<td>{{ trip.finish_date }}</td>
+							<td style="text-align: center;">
+								<div class="btn-group-vertical">
+									<a href="/trips/details/{{ trip.id }}" class="btn btn-info" title="Detail"><i
+											class="fa fa-eye"></i></a>
+									<a data-trip="{{ trip.id }}" class="btn btn-warning join-trip"
+									   title="Join"><i
+											class="fa fa-heart"></i></a>
+								</div>
+							</td>
+						</tr>
+						{% endfor %}
 						</tbody>
 						<tfoot>
 						</tfoot>
@@ -54,20 +58,57 @@
 		</div>
 	</div>
 </section>
+<div class="modal modal-info fade" id="modal-join" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+				<h4 id="myModalLabel" class="modal-title">Join Trip</h4>
+			</div>
+			<div class="modal-body">
+				<p class="join-message"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
 
 {% block custom_script %}
-<script>
+<script type="text/javascript">
 	$(function () {
 		$('#trip-list').DataTable({
 			'ordering' : false
 		});
 		
-		$(".btn-join-trip").click(function(e) {
-			alert($(this).attr('data-trip'));
-			
+		$(".join-trip").click(function(e) {
+			$.ajax({
+				method: 'POST',
+				url: '{% url 'trips:join' %}',
+				data: {
+					id: $(this).data('trip'),
+					csrfmiddlewaretoken: '{{ csrf_token }}'
+				},
+				dataType: 'json',
+				success: function (data) {
+					if (data.status !== 'ok') {
+						$("#modal-join").removeClass('modal-info').addClass('modal-danger');
+					}
+					$("#modal-join p.join-message").text(data.message);
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					$("#modal-join").removeClass('modal-info').addClass('modal-danger');
+					$("#modal-join p.join-message").text(textStatus + ': ' + errorThrown);
+				},
+				complete: function (jqXHR, textStatus) {
+					$('#modal-join').modal({backdrop: 'static'});
+				}
+			});
 			e.preventDefault();
 		});
-	})
+	});
 </script>
 {% endblock %}
