@@ -97,8 +97,12 @@
 									<h3 class="timeline-header"><a data-location="{{ location.id }}"
 									   class="scrollto location-detail" href="#location-details">{{ location.name }}</a></h3>
 									<div class="timeline-body">
+										{% if forloop.last %}
+										<p>Dismissed at final destination.</p>
+										{% else %}
 										<strong><i class="fa fa-group margin-r-5"></i> Meeting Point</strong>
 										<p>{% if location.meeting_point %}{{ location.meeting_point }}{% else %}-{% endif %}</p>
+										{% endif %}
 									</div>
 									<div class="timeline-footer">
 										<a class="btn btn-primary btn-xs">Insert New Destination</a>
