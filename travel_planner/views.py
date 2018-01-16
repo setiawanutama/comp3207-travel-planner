@@ -6,9 +6,31 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout, views as auth_views
 
+from trips.models import Trip, Location
 
 def index(request):
-    return render(request, 'index.html')
+    trips = Trip.objects.all().order_by('-start_date', '-id')
+    locations = Location.objects.all().order_by('-id')
+
+    list_trips = []
+    for trip in trips:
+        destination_name = ''
+
+        start_date = trip.start_date
+        start_date = start_date.strftime("%d %B %Y %H:%M")
+        finish_date = trip.finish_date
+        finish_date = finish_date.strftime("%d %B %Y %H:%M")
+        for location in locations:
+            if trip.destination == location.id:
+                destination_name = location.name
+                country = location.country
+                photo_url = location.photo_url
+                break
+        list_trip = {'id': trip.id, 'destination_name': destination_name,
+                     'country': country, 'photo_url': photo_url}
+        list_trips.append(list_trip)
+    data = {'trips': list_trips}
+    return render(request, 'index.html', data)
 
 
 def login(request):

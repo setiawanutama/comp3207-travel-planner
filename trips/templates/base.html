@@ -91,6 +91,7 @@
 		<script src="{% static 'js/maplace.js' %}"></script>
 		<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
 		<script src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/jquery.scrollTo.js' %}"></script>
 		<div id="fb-root"></div>
 		<script>(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
@@ -101,6 +102,13 @@
 		}(document, 'script', 'facebook-jssdk'));</script>
 		<script>
 			$(function() {
+				// ScrollTo
+				$('a.scrollto').click(function(e) {
+					var href_str = $(this).attr('href');
+					$.scrollTo($(href_str), 1000);
+					e.preventDefault();
+				});
+
 				// ajaxify
 				<!-- $('#main-content').ajaxify({ -->
 				<!-- refresh : true, -->

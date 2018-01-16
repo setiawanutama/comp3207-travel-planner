@@ -2,258 +2,172 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Travel Planner</title>
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-        <link href="{% static 'css/style.css' %}" rel="stylesheet">
-        <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-		<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-	</head>
-    <body>
-        <a id="menu-toggle" href="#" class="btn btn-primary btn-lg toggle"><i class="fa fa-bars"></i></a>
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li>
-                    <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle">
-                        <i class="fa fa-times"></i>
-					</a>
-				</li>
-				<li>
-                    <a href="#top" class="scrollto">Home</a>
-				</li>
-                <li>
-                    <a href="#about" class="scrollto">About</a>
-				</li>
-                <li>
-                    <a href="#places" class="scrollto">Planned Trips</a>
-				</li>
-				<li>
-                    <a href="#call-to-action" class="scrollto">Create Trip</a>
-				</li>
-				<li>
-                    <a href="/login/">
-						<i class="fa fa-facebook" style="display: inline;"></i> Sign In
-					</a>
-				</li>
-			</ul>
-		</div>
-        <div id="top" class="header">
-            <div class="vert-text parallax">
-                <h1 class="header-text">Travel the world</h1>
-                <h3 class="header-text">
-                    <em class="header-text">Let's travel together{% if user.first_name %}, {{ user.first_name }}{% endif %}</em>
-				</h3><br />
-                <a href="#about" class="btn header-btn scrollto">Find Out More</a>
-                <br/>
-                <a href="#about" class="scrollto"><img src="{% static 'img/direction.png' %}" class="space" alt="Direction"></a>
-			</div>
-		</div>
-        <div class="callout">
-            <div class="vert-text">
-                <h1 class="main-title parallax2">Your Travellers Community</h1>
-			</div>
-		</div>
-        <div id="about">
-            <div class="light-wrapper">
-                <div class="container inner">
-                    <div class="row">
-                        <div class="text-center">
-                            <h2 class="main-title">About us</h2>
-                            <hr>
-						</div>
-                        <div class="divide50"></div>
-                        <div class="col-sm-4">
-							<figure><img src="{% static 'img/travel_together.jpg' %}" alt="" style="width: 100%;"></figure>
-						</div>
-                        <div class="col-sm-8">
-							<h4>Join the Travellers Community</h4>
-							<p>Are you a person who doesn't hesitate to travel with others? Then why not join the journey with us. You can find various planned trips to join. Or you can plan a trip and let other travellers join.</p>
-						</div>
-					</div>
-					<div class="divide50"></div>
-				</div>
-			</div>
-		</div>
-        <div id="places" class="places">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4 text-center">
-                        <h2 class="main-title">Planned Trips</h2>
-                        <hr>
-					</div>
-				</div>
-			</div>
-            <div class="divide50"></div>  
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="grid center-block">
-                            <figure class="effect-zoe">
-                                <img src="{% static 'img/paris.jpg' %}" alt="paris" class="img-responsive center-block">
-                                <figcaption>
-                                    <h2>Paris</h2>
-                                    <p class="icon-links">
-                                        <a href="#"><i class="fa fa-heart-o"></i></a>
-                                        <a href="/trips/details/"><i class="fa fa-eye"></i></a>
-                                        <a href="#"><i class="fa fa-bookmark-o"></i></a>
-									</p>
-                                    <p class="description">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien.
-									</p>
-								</figcaption>           
-							</figure>
-						</div>
-					</div>
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="grid center-block">
-                            <figure class="effect-zoe">
-                                <img src="{% static 'img/sydney.jpg' %}" alt="sydney" class="img-responsive center-block">
-                                <figcaption>
-                                    <h2>Sydney</h2>
-                                    <p class="icon-links">
-                                        <a href="#"><i class="fa fa-heart-o"></i></a>
-                                        <a href="/trips/details/"><i class="fa fa-eye"></i></a>
-                                        <a href="#"><i class="fa fa-bookmark-o"></i></a>
-									</p>
-                                    <p class="description">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien.
-									</p>
-								</figcaption>
-							</figure>
-						</div>
-					</div>
-				</div>
-                <div class= "row">
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="grid center-block">
-                            <figure class="effect-zoe">
-                                <img src="{% static 'img/washington.jpg' %}" alt="washington" class="img-responsive center-block">
-                                <figcaption>
-                                    <h2>Washington</h2>
-                                    <p class="icon-links">
-                                        <a href="#"><i class="fa fa-heart-o"></i></a>
-                                        <a href="/trips/details/"><i class="fa fa-eye"></i></a>
-                                        <a href="#"><i class="fa fa-bookmark-o"></i></a>
-									</p>
-                                    <p class="description">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien.
-									</p>
-								</figcaption>           
-							</figure>
-						</div>
-					</div>
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="grid center-block">
-                            <figure class="effect-zoe">
-                                <img src="{% static 'img/london.jpg' %}" alt="london" class="img-responsive center-block">
-                                <figcaption>
-                                    <h2>London</h2>
-                                    <p class="icon-links">
-                                        <a href="#"><i class="fa fa-heart-o"></i></a>
-                                        <a href="/trips/details/"><i class="fa fa-eye"></i></a>
-                                        <a href="#"><i class="fa fa-bookmark-o"></i></a>
-									</p>
-                                    <p class="description">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien.
-									</p>
-								</figcaption>           
-							</figure>
-						</div>
-					</div>
-				</div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="grid center-block">
-                            <figure class="effect-zoe">
-                                <img src="{% static 'img/statue_of_liberty.jpg' %}" alt="statue_of_liberty" class="img-responsive center-block">
-                                <figcaption>
-                                    <h2>U.S.A</h2>
-                                    <p class="icon-links">
-                                        <a href="#"><i class="fa fa-heart-o"></i></a>
-                                        <a href="/trips/details/"><i class="fa fa-eye"></i></a>
-                                        <a href="#"><i class="fa fa-bookmark-o"></i></a>
-									</p>
-                                    <p class="description">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien.
-									</p>
-								</figcaption>           
-							</figure>
-						</div>
-					</div>
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="grid center-block">
-                            <figure class="effect-zoe">
-                                <img src="{% static 'img/pizza_tower.jpg' %}" alt="pizza_tower" class="img-responsive center-block">
-                                <figcaption>
-                                    <h2>Pizza Tower</h2>
-                                    <p class="icon-links">
-                                        <a href="#"><i class="fa fa-heart-o"></i></a>
-                                        <a href="/trips/details/"><i class="fa fa-eye"></i></a>
-                                        <a href="#"><i class="fa fa-bookmark-o"></i></a>
-									</p>
-                                    <p class="description">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien.
-									</p>
-								</figcaption>           
-							</figure>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-        <div id="call-to-action" class="call-to-action">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 text-center">
-                        <h3>Create your own travel plan</h3>
-                        <a href="/trips/new/" class="btn booking-btn text-center">Go Travel</a>
-					</div>
-				</div>
-			</div>
-		</div>
-        <footer style="height: 100px; padding: 15px 0;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 text-center">
-                        <div class="top-scroll">
-                            <a href="#top" class="scrollto"><i class="fa fa-arrow-circle-up scroll"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'js/jquery.scrollTo.js' %}"></script>
-        <script src="{% static 'js/jquery.parallax-1.1.3.js' %}"></script>
-        <!-- Custom JavaScript for the Side Menu and Smooth Scrolling -->
-        <script>
-			$("#menu-close").click(function(e) {
-				$("#sidebar-wrapper").toggleClass("active");
-				e.preventDefault();
-			});
-		</script>
-        <script>
-			$("#menu-toggle").click(function(e) {
-				$("#sidebar-wrapper").toggleClass("active");
-				e.preventDefault();
-			});
-		</script>
-        <script>
-			$(function() {
-				$('a.scrollto').click(function(e) {
-					var href_str = $(this).attr('href');
-					$.scrollTo($(href_str), 1000);
-					e.preventDefault();
-				});
-			});
-		</script>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Travel Planner</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+</head>
+<body>
+<a id="menu-toggle" href="#" class="btn btn-primary btn-lg toggle"><i class="fa fa-bars"></i></a>
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li>
+            <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle">
+                <i class="fa fa-times"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#top" class="scrollto">Home</a>
+        </li>
+        <li>
+            <a href="#about" class="scrollto">About</a>
+        </li>
+        <li>
+            <a href="#places" class="scrollto">Planned Trips</a>
+        </li>
+        <li>
+            <a href="#call-to-action" class="scrollto">Create Trip</a>
+        </li>
+        <li>
+            <a href="/login/">
+                <i class="fa fa-facebook" style="display: inline;"></i> Sign In
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="top" class="header">
+    <div class="vert-text parallax">
+        <h1 class="header-text">Travel the world</h1>
+        <h3 class="header-text">
+            <em class="header-text">Let's travel together{% if user.first_name %}, {{ user.first_name }}{% endif %}</em>
+        </h3><br/>
+        <a href="#about" class="btn header-btn scrollto">Find Out More</a>
+        <br/>
+        <a href="#about" class="scrollto"><img src="{% static 'img/direction.png' %}" class="space" alt="Direction"></a>
+    </div>
+</div>
+<div class="callout">
+    <div class="vert-text">
+        <h1 class="main-title parallax2">Your Travellers Community</h1>
+    </div>
+</div>
+<div id="about">
+    <div class="light-wrapper">
+        <div class="container inner">
+            <div class="row">
+                <div class="text-center">
+                    <h2 class="main-title">About us</h2>
+                    <hr>
+                </div>
+                <div class="divide50"></div>
+                <div class="col-sm-4">
+                    <figure><img src="{% static 'img/travel_together.jpg' %}" alt="" style="width: 100%;"></figure>
+                </div>
+                <div class="col-sm-8">
+                    <h4>Join the Travellers Community</h4>
+                    <p>Are you a person who doesn't hesitate to travel with others? Then why not join the journey with us. You can find various planned trips to join. Or you can plan a trip and let other travellers join.</p>
+                </div>
+            </div>
+            <div class="divide50"></div>
+        </div>
+    </div>
+</div>
+<div id="places" class="places">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <h2 class="main-title">Planned Trips</h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="divide50"></div>
+    <div class="container">
+        {% for trip in trips %}
+        	{% if forloop.first %}
+        <div class="row">
+            {% elif forloop.counter0|divisibleby:2 %}
+        </div>
+        <div class="row">
+            {% endif %}
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="grid center-block">
+                    <figure class="effect-zoe">
+                        {% if trip.photo_url %}
+                        <img src="{{ trip.photo_url }}" class="img-responsive center-block">
+                        {% else %}
+                        <img src="{% static 'img/no-image-available.jpg' %}" class="img-responsive center-block">
+                        {% endif %}
+                        <figcaption>
+                            <h2>{{ trip.country }}</h2>
+                            <p class="icon-links">
+                                <a href="/trips/details/{{ trip.id }}"><i class="fa fa-eye"></i></a>
+                            </p>
+                            <p class="description">{{ trip.destination_name }}</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            {% if forloop.last %}
+        </div>
+        	{% endif %}
+        {% endfor %}
+    </div>
+</div>
+<div id="call-to-action" class="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <h3>Create your own travel plan</h3>
+                <a href="/trips/new/" class="btn booking-btn text-center">Go Travel</a>
+            </div>
+        </div>
+    </div>
+</div>
+<footer style="height: 100px; padding: 15px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <div class="top-scroll">
+                    <a href="#top" class="scrollto"><i class="fa fa-arrow-circle-up scroll"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.scrollTo.js' %}"></script>
+<script src="{% static 'js/jquery.parallax-1.1.3.js' %}"></script>
+
+<script>
+$(function() {
+	// Custom JavaScript for the Side Menu and Smooth Scrolling
+	$("#menu-close").click(function(e) {
+		$("#sidebar-wrapper").toggleClass("active");
+		e.preventDefault();
+	});
+	$("#menu-toggle").click(function(e) {
+		$("#sidebar-wrapper").toggleClass("active");
+		e.preventDefault();
+	});
+
+	// ScrollTo
+	$('a.scrollto').click(function(e) {
+		var href_str = $(this).attr('href');
+		$.scrollTo($(href_str), 1000);
+		e.preventDefault();
+	});
+});
+</script>
+</body>
 </html>

@@ -22,7 +22,8 @@ def add_new_trip(request):
     if request.method == 'POST':
         form = NewTripForm(request.POST)
         if form.is_valid():
-            trip = Trip(creator=request.user)
+            trip = Trip(creator=request.user, start_date=form.cleaned_data['start_date'],
+                        finish_date=form.cleaned_data['finish_date'])
             trip.save()
 
             origin_location = Location(name=form.cleaned_data['origin_input'])
@@ -119,11 +120,37 @@ def details(request, trip_id):
         trip_id = int(trip_id)
     except ValueError:
         trip_id = 0
-    trip = Trip.objects.filter(pk=trip_id)
-    if trip:
+    locations = Location.objects.filter(trip__pk=trip_id)
+    if locations:
+        dict_location = {}
+        for location in locations:
+            dict_location[str(location.id)] = location
 
+        trip = locations[0].trip
+        destination_location = dict_location[str(trip.destination)]
+        num_followers = trip.num_followers
+        origin = trip.origin
+        destination = trip.destination
+        route = trip.route
+        if route:
+            route = route.split('-')
+        else:
+            route = []
+        locations_route = []
+        for i in route:
+            locations_route.append(dict_location[str(i)])
 
-        data = {}
+        is_creator = False
+        has_joined = False
+        if trip.creator == request.user:
+            is_creator = True
+        already_join = Trip.objects.filter(pk=trip_id, followers=request.user)
+        if already_join:
+            has_joined = True
+
+        data = {'num_followers': '{:,}'.format(num_followers), 'origin': origin, 'destination': destination,
+                'destination_location': destination_location, 'trip_id': trip_id, 'is_creator': is_creator,
+                'has_joined': has_joined, 'locations_route': locations_route}
         return render(request, 'trips/details.html', data)
     else:
         raise Http404("Trip does not exist")

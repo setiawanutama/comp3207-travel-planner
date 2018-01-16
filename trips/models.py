@@ -5,9 +5,9 @@ from django.db import models
 class Trip(models.Model):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='creator')
     origin = models.IntegerField(null=True, blank=True)
-    start_date = models.DateTimeField(auto_now=True)
+    start_date = models.DateTimeField()
     destination = models.IntegerField(null=True, blank=True)
-    finish_date = models.DateTimeField(auto_now=True)
+    finish_date = models.DateTimeField()
     route = models.TextField()  # will serve as list of locations
     num_followers = models.IntegerField(default=0)
     followers = models.ManyToManyField(settings.AUTH_USER_MODEL)

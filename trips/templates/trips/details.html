@@ -11,24 +11,40 @@
 	</h1>
 	<ol class="breadcrumb">
 		<li><a class="no-ajaxy" href="/"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="/trips/">Trips</a></li>
-        <li class="active">Details</li>
+		<li><a href="/trips/">Trips</a></li>
+		<li class="active">Details</li>
 	</ol>
 </section>
 <section class="content">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-3" id="location-details">
 			<div class="box box-primary">
 				<div class="box-body box-profile">
-					<img style="width: 100%;" class="profile-user-img img-responsive img-rounded" src="{% static 'img/paris.jpg' %}" alt="">
-					<h3 class="profile-username text-center">Eiffel Tower</h3>
-					<p class="text-muted text-center">Paris</p>
+					{% if destination_location.photo_url %}
+					<img style="width: 100%;" class="profile-user-img img-responsive img-rounded"
+						 src="{{ destination_location.photo_url }}" alt="">
+					{% else %}
+					<img style="width: 100%;" class="profile-user-img img-responsive img-rounded"
+						 src="{% static 'img/no-image-available.jpg' %}" alt="">
+					{% endif %}
+					<h3 class="profile-username text-center">{{ destination_location.name }}</h3>
 					<ul class="list-group list-group-unbordered">
 						<li class="list-group-item">
-							<b>Followers</b> <a class="pull-right">1,322</a>
+							<b>Followers</b> <a class="pull-right">{{ num_followers }}</a>
 						</li>
 					</ul>
-					<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+					{% if is_creator %}
+					<button data-trip="{{ trip_id }}"
+							class="btn btn-primary btn-block disabled">You created this trip
+					</button>
+					{% elif has_joined %}
+					<button data-trip="{{ trip_id }}"
+							class="btn btn-primary btn-block disabled">You've joined this trip
+					</button>
+					{% else %}
+					<button data-trip="{{ trip_id }}" class="btn btn-warning btn-block join-trip" title="Join"><i
+							class="fa fa-heart"></i><b> Join</b></button>
+					{% endif %}
 				</div>
 			</div>
 			<div class="box box-primary">
@@ -36,24 +52,20 @@
 					<h3 class="box-title">Address Details</h3>
 				</div>
 				<div class="box-body">
-					<strong><i class="fa fa-book margin-r-5"></i> Name</strong>
-					<p class="text-muted">
-						Eiffel Tower
-					</p>
+					<strong><i class="fa fa-building-o margin-r-5"></i> Name</strong>
+					<p class="text-muted">{{ destination_location.name }}</p>
 					<hr>
 					<strong><i class="fa fa-map-marker margin-r-5"></i> Latitude</strong>
-					<p class="text-muted">48.8583698</p>
+					<p class="text-muted">{{ destination_location.lat }}</p>
 					<hr>
 					<strong><i class="fa fa-map-marker margin-r-5"></i> Longitude</strong>
-					<p class="text-muted">2.2944833000000244</p>
+					<p class="text-muted">{{ destination_location.long }}</p>
 					<hr>
-					<strong><i class="fa fa-pencil margin-r-5"></i> Country</strong>
-					<p>
-						<span class="label label-warning">France</span>
-					</p>
+					<strong><i class="fa fa-globe margin-r-5"></i> State</strong>
+					<p class="text-muted">{{ destination_location.state }}</p>
 					<hr>
-					<strong><i class="fa fa-file-text-o margin-r-5"></i> State</strong>
-					<p class="text-muted">Paris</p>
+					<strong><i class="fa fa-flag-o margin-r-5"></i> Country</strong>
+					<p class="text-muted">{{ destination_location.country }}</p>
 				</div>
 			</div>
 		</div>
@@ -61,82 +73,40 @@
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
-					<li><a href="#map" data-toggle="tab">Map</a></li>
+					<!--<li><a href="#map" data-toggle="tab">Map</a></li>-->
 					<li><a href="#fb-comment" data-toggle="tab">Discussions</a></li>
 					<li><a href="#insert-destination" data-toggle="tab">Insert Destination</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="active tab-pane" id="timeline">
 						<ul class="timeline timeline-inverse">
+							{% for location in locations_route %}
 							<li class="time-label">
-								<span class="bg-red">
-									10 Feb. 2017
-								</span>
+								<span class="bg-red">{{location.start_date|date:"d M Y"}}</span>
 							</li>
 							<li>
+								{% if location.id == origin %}
 								<i class="fa fa-flag bg-blue"></i>
-								<div class="timeline-item">
-									<span class="time"><i class="fa fa-clock-o"></i> 10:00</span>
-									<h3 class="timeline-header"><a href="#">Highfield Interchange</a> Southampton, UK</h3>
-									<div class="timeline-body">
-										<strong><i class="fa fa-group margin-r-5"></i> Meeting Point</strong>
-										<p>Highfield Interchange Unilink Bus Station</p>
-									</div>
-									<div class="timeline-footer">
-										<a class="btn btn-primary btn-xs">Insert Destination</a>
-										<a class="btn btn-danger btn-xs">Delete</a>
-									</div>
-								</div>
-							</li>
-							<li>
-								<i class="fa fa-map-pin bg-aqua"></i>
-								<div class="timeline-item">
-									<span class="time"><i class="fa fa-clock-o"></i> 12:30</span>
-									<h3 class="timeline-header"><a href="#">London Eye</a> London, UK</h3>
-									<div class="timeline-body">
-										<strong><i class="fa fa-group margin-r-5"></i> Meeting Point</strong>
-										<p>Westminster Bridge</p>
-									</div>
-									<div class="timeline-footer">
-										<a class="btn btn-primary btn-xs">Insert Destination</a>
-										<a class="btn btn-danger btn-xs">Delete</a>
-									</div>
-								</div>
-							</li>
-							<li>
-								<i class="fa fa-map-pin bg-yellow"></i>
-								<div class="timeline-item">
-									<span class="time"><i class="fa fa-clock-o"></i> 13:45</span>
-									<h3 class="timeline-header"><a href="#">Buckingham Palace</a> London, UK</h3>
-									<div class="timeline-body">
-										<strong><i class="fa fa-group margin-r-5"></i> Meeting Point</strong>
-										<p>Victoria Memorial Monument</p>
-									</div>
-									<div class="timeline-footer">
-										<a class="btn btn-primary btn-xs">Insert Destination</a>
-										<a class="btn btn-danger btn-xs">Delete</a>
-									</div>
-								</div>
-							</li>
-							<li class="time-label">
-								<span class="bg-green">
-									13 Feb. 2017
-								</span>
-							</li>
-							<li>
+								{% elif location.id == destination %}
 								<i class="fa fa-flag-checkered bg-purple"></i>
+								{% else %}
+								<i class="fa fa-map-pin bg-yellow"></i>
+								{% endif %}
 								<div class="timeline-item">
-									<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-									<h3 class="timeline-header"><a href="#">Eiffel Tower</a> Paris, France</h3>
+									<span class="time"><i class="fa fa-clock-o"></i>{{ location.start_date|date:" H:i" }}</span>
+									<h3 class="timeline-header"><a data-location="{{ location.id }}"
+									   class="scrollto location-detail" href="#location-details">{{ location.name }}</a></h3>
 									<div class="timeline-body">
-										<p>Dismissed at final destination.</p>
+										<strong><i class="fa fa-group margin-r-5"></i> Meeting Point</strong>
+										<p>{% if location.meeting_point %}{{ location.meeting_point }}{% else %}-{% endif %}</p>
 									</div>
 									<div class="timeline-footer">
-										<a class="btn btn-primary btn-xs">Insert Destination</a>
-										<a class="btn btn-danger btn-xs">Delete</a>
+										<a class="btn btn-primary btn-xs">Insert New Destination</a>
+										<!--<a class="btn btn-danger btn-xs">Delete</a>-->
 									</div>
 								</div>
 							</li>
+							{% endfor %}
 							<li>
 								<i class="fa fa-clock-o bg-gray"></i>
 							</li>
@@ -145,7 +115,6 @@
 					<div class="tab-pane" id="map">
 						<div id="controls"></div>
 						<div id="gmap" style="with: 100%;height: 600px;"></div>
-						
 					</div>
 					<div class="tab-pane" id="fb-comment">
 						<div class="fb-comments" data-order-by="reverse_time" data-width="100%"></div>
@@ -164,12 +133,14 @@
 								</div>
 								<div class="form-group">
 									<label for="new-destination-input">Destination Location</label>
-									<input type="text" class="form-control" id="new-destination-input" placeholder="Enter a new destination location" required>
+									<input type="text" class="form-control" id="new-destination-input"
+										   placeholder="Enter a new destination location" required>
 								</div>
 								<div class="form-group">
 									<label for="start_date">Start Date</label>
 									<div class="input-group" id="datetimepicker_start_date2">
-										<input type="text" class="form-control" id="start_date" placeholder="Pick start date & time" required>
+										<input type="text" class="form-control" id="start_date"
+											   placeholder="Pick start date & time" required>
 										<span class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</span>
@@ -178,7 +149,8 @@
 								<div class="form-group">
 									<label for="photo_url">Photo URL <code>optional</code></label>
 									<div class="input-group">
-										<input type="url" class="form-control" id="photo_url" placeholder="Enter image URL">
+										<input type="url" class="form-control" id="photo_url"
+											   placeholder="Enter image URL">
 										<span class="input-group-addon">
 											<i class="fa fa-camera"></i>
 										</span>
@@ -188,7 +160,8 @@
 								<div class="form-group">
 									<label for="meeting_point">Meeting Point <code>optional</code></label>
 									<div class="input-group">
-										<input type="text" class="form-control" id="meeting_point" placeholder="Enter a meeting point location">
+										<input type="text" class="form-control" id="meeting_point"
+											   placeholder="Enter a meeting point location">
 										<span class="input-group-addon">
 											<i class="fa fa-group"></i>
 										</span>
@@ -205,6 +178,23 @@
 		</div>
 	</div>
 </section>
+<div class="modal modal-info fade" id="modal-join" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+				<h4 id="myModalLabel" class="modal-title">Join Trip</h4>
+			</div>
+			<div class="modal-body">
+				<p class="join-message"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
 
 {% block custom_script %}
@@ -276,6 +266,38 @@
 			view_all_text: 'Start',
 			type: 'polyline'
 		}).Load();
+
+		// handle for Join button
+		$("section.content").on("click", ".join-trip", function(e) {
+			var this_selector = $(this);
+			$.ajax({
+				method: 'POST',
+				url: '{% url 'trips:join' %}',
+				data: {
+					id: $(this).data('trip'),
+					csrfmiddlewaretoken: '{{ csrf_token }}'
+				},
+				dataType: 'json',
+				success: function (data) {
+					if (data.status !== 'ok') {
+						$("#modal-join").removeClass('modal-info').addClass('modal-danger');
+					}
+					$("#modal-join p.join-message").text(data.message);
+					this_selector.removeClass('btn-warning join-trip').addClass('btn-primary disabled');
+					this_selector.text(data.message);
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					$("#modal-join").removeClass('modal-info').addClass('modal-danger');
+					$("#modal-join p.join-message").text(textStatus + ': ' + errorThrown);
+				},
+				complete: function (jqXHR, textStatus) {
+					$('#modal-join').modal({backdrop: 'static'});
+				}
+			});
+			e.preventDefault();
+		});
 	});
+
+
 </script>
 {% endblock %}
